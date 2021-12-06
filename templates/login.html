@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <div class="links">
+        <ul>
+            <li style="float:left;"><a href="#">Meet & Greet</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </div>
+    <div class="info">
+        <form action="/login" method="post">
+            <div class="f1">
+                <input type="text" placeholder="username" name="name">
+            </div>
+            <div class="f1">
+                <input type="password" placeholder="password" name="password">
+            </div>
+            <div>
+                <button value="Log In" type="submit" class="f2">Log In</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

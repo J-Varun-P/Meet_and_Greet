@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Movies
+{% endblock %}
+
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+{% block body%}
+<!--<h4 style="color: #a0a0a0; margin: 1% 1%">Please note that the results provided after submit is confined to what's peresent in the pset7 movies database.</h4>
+<h4 style="color: #a0a0a0; margin: 1% 1%">Not every piece of information about movies and the cast is stored in the pset7 movies database.</h4>
+<h4 style="color: #a0a0a0; margin: 1% 1%">Thank you for understanding.</h4>-->
+<script>
+    function fun1(){
+        if(document.querySelector("#name").value === "")
+        {
+            document.querySelector("#birth").disabled = true;
+        }
+        else
+        {
+            document.querySelector("#birth").disabled = false;
+        }
+    }
+</script>
+<div class="links">
+        <ul>
+            <li class="indexnav" style="float: left;"><b>Welcome {{name}}</b></li>
+            <!--<li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="#">Global</a></li>-->
+            <li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="/">Home</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/post">Post</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/history">History</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/inbox">Inbox</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <!--<li><a href="/register">Register</a></li>-->
+        </ul>
+</div>
+<div style="width:75%; margin:4% auto; border: 4px solid Gray; padding: 25px">
+    <form action="/movies" method="post">
+    <div class="mb-3">
+         <h3 style="color: aqua;">Name</h3>
+         <input type="text" class="form-control" name="name" placeholder="Name" onkeyup="fun1()" id="name">
+    </div>
+    <div class="mb-3">
+         <h3 style="color: aqua;">Birth Year (Use if there are duplicates otherwise leave it blank)</h3>
+         <input type="text" class="form-control" name="birth" placeholder="Birth year" disabled id="birth">
+    </div>
+    <div class="mb-3">
+      <h3 style="color: aqua;">IMDb Rating</h3>
+      <input type="text" class="form-control" name="imdb" placeholder="IMDb Rating >=">
+    </div>
+    <div class="mb-3">
+      <h3 style="color: aqua;">Released in</h3>
+      <input type="text" class="form-control" name="year_start" placeholder="Year starting from">
+    </div>
+    <div class="mb-3">
+      <!--<h1 style="color: aqua;">Ending Year</h1>-->
+      <input type="text" class="form-control" name="year_end" placeholder="Year ending in">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

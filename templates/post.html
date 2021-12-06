@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Post
+{% endblock %}
+
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="links">
+        <ul>
+            <li class="indexnav" style="float: left;"><b>Welcome {{name}}</b></li>
+            <!--<li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="#">Global</a></li>-->
+            <li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="/">Home</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/history">History</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/inbox">Inbox</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/movies">Movies</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <!--<li><a href="/register">Register</a></li>-->
+        </ul>
+    </div>
+    <div class="table1">
+        <form action="/post" method="post">
+            <div class="f1">
+                <p style="text-decoration: underline; color: gray"><b>Post Something</b><p>
+            </div>
+            <div class="f1">
+                <textarea name="message" rows="6" style="width: 100%"></textarea>
+            </div>
+            <div class="f1">
+                <button type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

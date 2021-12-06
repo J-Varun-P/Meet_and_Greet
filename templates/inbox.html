@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inbox
+{% endblock %}
+
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        button:hover{
+            background-color: #505050;
+            color: white;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="links">
+        <ul>
+            <li class="indexnav" style="float: left;"><b>Welcome {{name}}</b></li>
+            <!--<li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="#">Global</a></li>-->
+            <li style="float: left; border-right: 1px solid white; margin-left: 25%;"><a href="/">Home</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/post">Post</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/history">History</a></li>
+            <li style="float: left; border-right: 1px solid white;"><a href="/movies">Movies</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <!--<li><a href="/register">Register</a></li>-->
+        </ul>
+    </div>
+    <br>
+    <div class="table2">
+    <table class="table table-dark table-stripped">
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for row in rows %}
+                {% set name = row["from_name"]%}
+                {% set message = row["message"] %}
+                {% set time = row["time"] %}
+                {% if row["ack"] == 0 %}
+                    <tr>
+                        <td>{{name}} ({{row["from_email"]}}) ( Id {{row["from_user"]}} ) likes to join you in on your activity, {{message}}</td>
+                        <td></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{name}} ({{row["from_email"]}}) ( Id {{row["from_user"]}} ) acknowledges your message, {{message}}</td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+                    <tr>
+                        <td>The message was received at</td>
+                        <td>{{time}}</td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+        <tfoot>
+            <td colspan="1"></td>
+            <td>{# #}</td>
+        </tfoot>
+    </table>
+    </div>
+    <div style="background-color: #a0a0a0; margin-top: 120px; color: white; padding: 25px;">
+        <h3>Want to delete an entry?</h3>
+        <hr>
+        <h4>Please provide the timestamp below (yyyy-mm-dd hh-mm-ss)</h4><br>
+        <form action="/inbox" method="post">
+            <h3>Id</h3>
+            <input type="text" name="id">
+            <h3>Timestamp</h3>
+            <input type="text" name="time">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+    <div style="background-color: #a0a0a0; margin-top: 120px; color: white; padding: 25px;">
+        <h3>Want to acknowledge a message?</h3>
+        <hr>
+        <h4>Please provide the Id and the message below (yyyy-mm-dd hh-mm-ss)</h4><br>
+        <form action="/acknowledge" method="post">
+            <h3>Id</h3>
+            <input type="text" name="id">
+            <h3>Message</h3>
+            <input type="text" name="message">
+            <button type="submit">Acknowledge</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+    <div class="links">
+        <ul>
+            <li><a href="/login">Log In</a></li>
+            <!--<li><a href="/register">Register</a></li>-->
+        </ul>
+    </div>
+    <div class="info">
+        <form action="/register" method="post">
+            <div class="re2">
+                <div class="f1">
+                    <input type="text" placeholder="username" name="name">
+                </div>
+                <div class="f1">
+                    <input type="email" placeholder="email" name="email">
+                </div>
+                <div class="f1">
+                    <input type="password" placeholder="password" name="password">
+                </div>
+                <div class="f1">
+                    <input type="password" placeholder="confirm password" name="password_c">
+                </div>
+                <div>
+                    <button type="submit" class="f2">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
